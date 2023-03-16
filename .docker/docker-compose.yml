@@ -37,6 +37,15 @@ services:
         env_file:
             - .env.nginx.local
 
+    git:
+        image: git_sample_app_docker_compose:1.0
+        container_name: git
+        build:
+            context: ./git
+        command: git -C /build clone https://github.com/alexxgarci/flora_challenge.git
+        volumes:
+            - symfony_dockerized_app_sync:/var/www/symfony/
+
 volumes:
     symfony_dockerized_app_sync:
         external: true
